@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+
+<style>
+    .center {
+        /* this will keep the content center */
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    .msg-group {
+        position: absolute;
+        max-width: 70%;
+        height: 90%;
+        border: 3px solid lightblue;
+        overflow-y: scroll;
+        /*maybe need to uncomment if contentarea becomes too long*/
+    }
+
+    .card {
+        padding: 10px 0 10px 0;
+
+    }
+
+    .input-group {
+        position: absolute;
+        height: 12%;
+        width: 70%;
+        bottom: 0;
+        border: 3px solid lightblue;
+    }
+
+    #uploadarea {
+        width: 20%;
+    }
+
+    .btn {
+        height: 33%;
+        width: 100%;
+        display: block;
+        line-height: 5px;
+    }
+
+    .btn-group-vertical {
+        width: 10%;
+    }
+</style>
+
+<script>
+    //need this global variable to track if student or tutor sends message (hardcoding purpose)
+    var messageNr = 0;
+
+    //function to trigger the <input type="file"> event
+    function uploadFile() {
+        document.getElementById("file").click();
+    }
+
+    //function gets called after user selected a file in the explorer
+    function fileSelected() {
+        alert("selected file with file name: " + document.getElementById("file").files[0].name + ". There is no functionality for uploading files yet, so the selected file will be ignored.");
+    }
+
+    function isOdd(num) { 
+        return num % 2 === 1; 
+    }
+
+    //sends a the message written in the textarea (currently hardcoded, swaps between tutor and student after every message)
+    function sendMessage() {
+
+        var textMessage = document.getElementById("input-box").value;
+
+        //create the tree structure to format the message in html
+        var card = document.createElement("div");
+        card.setAttribute("class", "card");
+
+        var cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body");
+
+        //currently alternating between student and tutor when sending a message
+        if (isOdd(messageNr)) {
+            var userName = document.createElement("h6");
+            userName.setAttribute("class", "card-subtitle mb-2 text-muted text-left");
+            userName.innerHTML = "Tutor";
+
+            var message = document.createElement("p");
+            message.setAttribute("class", "card-text float-left")
+            message.innerHTML = textMessage;
+        } else {
+            var userName = document.createElement("h6");
+            userName.setAttribute("class", "card-subtitle mb-2 text-muted text-right");
+            userName.innerHTML = "Student";
+
+            var message = document.createElement("p");
+            message.setAttribute("class", "card-text float-right")
+            message.innerHTML = textMessage;
+        }
+
+        messageNr++;
+        cardBody.appendChild(userName);
+        cardBody.appendChild(message);
+        card.appendChild(cardBody);
+        document.getElementById("msg-area").appendChild(card);
+    }
+
+</script>
+
+<body>
+    <div class="container">
+
+        <div id="msg-area" class="msg-group center">
+
+            <!-- sample for how the tree structure of a message looks like which sendMessage() creates in javascript
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted text-left">Tutor</h6>
+                    <p class="card-text float-left">Hi!</p>
+                </div>
+            </div>
+            -->
+
+        </div>
+
+        <div class="input-group center">
+            <textarea id="input-box" class="form-control" cols="6" placeholder="Say something..."></textarea>
+
+            <div class="btn-group-vertical">
+                <input class="btn btn-primary mb-1" type="button" value="Send" onclick="sendMessage()">
+                <input class="btn btn-primary mb-1" type="button" value="Browse Files..." onclick="uploadFile()">
+                <input type="file" id="file" onchange="fileSelected()" hidden> 
+                <input class="btn btn-primary" type="button" value="Upload">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
