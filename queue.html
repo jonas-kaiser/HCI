@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>StudiHelp</title>
+
+    <!-- Bootstrap CSS 4.4.1 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+</style>
+
+<script>
+    // target url to navigate to when leaving queue
+    var target_url;
+
+    var current_image = 0;
+    var current_position = 3;
+    var current_waiting_time = 1;
+
+    // sets target to Homepage link
+    function toHomepage() {
+        target_url = "home.html";
+    }
+
+    // sets target to Enter Queue link
+    function toStudentpage() {
+        target_url = "enter_queue.html";
+    }
+
+    // function when leaving queue
+    function leaveQueue() {
+        location.assign(target_url);
+    }
+
+    // changes display of position
+    function changePosition() {
+        var position_text = document.getElementById('position');
+        position_text.innerHTML = "Your position is: " + current_position;
+
+        if (current_position == 0) forwardToChat();
+    }
+
+    // changes display of waiting time
+    function changeTime() {
+        var time_text = document.getElementById('time');
+        time_text.innerHTML = "Estimated Queue Time: ~" + current_waiting_time + " min";
+    }
+
+    // shows message and waits 4 seconds before entering chat
+    function forwardToChat() {
+        $('#enterChat').modal('show');
+    
+        var time = 4
+        
+        setInterval(function() {
+            if (time == 0) {
+                target_url = "chat.html";
+                leaveQueue();
+            } else {
+                time--;
+                var enter_chat_msg = document.getElementById('enterChatMessage');
+                enter_chat_msg.innerHTML = "Entering Chat <br />in " + time + "s";
+            }
+            
+        }, 1000);        
+    }
+
+    // animates the queue image
+    setInterval(function() {
+        current_image++;
+        if(current_image > 3) current_image = 0;
+        var queueImage = document.getElementById('queueImage');
+        queueImage.src = 'img/queue_img' + current_image + '.png'
+    }, 1000);
+
+    // change position every 3 seconds (hardcode)
+    setInterval(function() {
+        current_position--;
+        if(current_position >= 0) {
+            changePosition();
+        }
+    },3000);
+</script>
+
+<body>
+    <!-- Breadcrumb navigation -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" data-toggle="modal" data-target="#leaveQueue" onclick="toHomepage()"><a href="#">Home</a></li>
+          <li class="breadcrumb-item" data-toggle="modal" data-target="#leaveQueue" onclick="toStudentpage()"><a href="#">Student</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Queue</li>
+        </ol>
+      </nav>
+
+    <!-- Hardcoded default values --> 
+    <div class="container text-center" > 
+        <h2 class="display-3">You are currently in Queue!</h2>
+        <p class="display-4" id="position">Your position is: 3</p>
+        <p class="display-4" id="time">Estimated Queue Time: ~1 min</p>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <!-- Queue animation -->
+            <div class="col-md-12 text-center">
+                <img src="img/queue_img0.png" id="queueImage" class="img-responsive">
+            </div>            
+
+            <!-- Leave Queue Button-->
+            <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#leaveQueue" onclick="toHomepage()">
+                Leave Queue
+            </button>
+
+            <!-- Leave Queue Popup -->
+            <div class="modal" id="leaveQueue">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Warning!</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            You are about to leave the queue!<br />
+                            You will lose your current position and will need to queue again when coming back!<br /> <br />
+                            Do you still wish to continue leaving?
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" onclick="leaveQueue()">Leave</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Stay</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Enter Chat Popup -->
+            <div class="modal fade" id="enterChat">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content text-center">
+                        <h4 id="enterChatMessage">
+                            Entering Chat <br />
+                            in 4s
+                        </h4>
+                    </div>
+                </h4>
+            </div>
+        
+        </div>        
+    </div>
+
+</body>
+
+</html>
