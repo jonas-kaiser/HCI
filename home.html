@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    .container{
+        height: 100%;
+        margin-top: 10px;
+    }
+
+</style>
+
+<script>
+  
+
+//login for tutor 
+function handleLogin() {
+  this.location.replace("chat.html");
+
+}
+
+
+//replace with queue site
+function handleStudent() {
+  this.location.replace()
+}
+
+
+</script>
+
+<body>
+    <div class="container">
+        <div class="row">   
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">>Home</a></li>
+                </ol>            
+        </div>
+
+        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-3">Welcome to StudiHELP</h1>
+            <br>
+            <h4 class="display-4">I am a:</h4>
+        </div>
+
+        <div class="container">
+            <div class="card-deck text-center">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <h1>Student</h1>
+                </div>
+                <div class="card-body">
+                  <p></p>
+                  <h4 class="card-title">Get help in your Assignments!</h4>
+                  <br>
+                  <br>
+                  <button type="button" class="btn btn-lg btn-block btn-primary" onClick="handleStudent()">Enter</button>
+                </div>
+              </div>
+              <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                  <h1>Tutor</h1>
+                </div>
+                <div class="card-body">
+                  <p></p>
+                  <h4 class="card-title">Help Students solving their problems</h4>
+                  <br>
+                  <br>
+                  <a href="" class="btn btn-lg btn-block btn-primary" style="margin-top: auto;" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                </div>
+              </div>
+          </div>
+    
+
+          <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body mx-3">
+                  <div class="md-form mb-5">      
+                    <p>User Name: </p>
+                    <input type="text" id="defaultForm-username" class="form-control validate">       
+                  </div>
+
+                  <div class="md-form mb-4">
+                    <p>Password: </p>
+                    <input type="password" id="defaultForm-pass" class="form-control validate">                   
+                  </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button class="btn btn-default" onClick="handleLogin()">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+
+</html>
