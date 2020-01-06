@@ -55,9 +55,9 @@
     // shows message and waits 4 seconds before entering chat
     function forwardToChat() {
         $('#enterChat').modal('show');
-    
+
         var time = 4
-        
+
         setInterval(function() {
             if (time == 0) {
                 target_url = "chat.html";
@@ -67,8 +67,8 @@
                 var enter_chat_msg = document.getElementById('enterChatMessage');
                 enter_chat_msg.innerHTML = "Entering Chat <br />in " + time + "s";
             }
-            
-        }, 1000);        
+
+        }, 1000);
     }
 
     // animates the queue image
@@ -98,8 +98,8 @@
         </ol>
       </nav>
 
-    <!-- Hardcoded default values --> 
-    <div class="container text-center" > 
+    <!-- Hardcoded default values -->
+    <div class="container text-center" >
         <h2 class="display-3">You are currently in Queue!</h2>
         <p class="display-4" id="position">Your position is: 3</p>
         <p class="display-4" id="time">Estimated Queue Time: ~1 min</p>
@@ -111,7 +111,7 @@
             <!-- Queue animation -->
             <div class="col-md-12 text-center">
                 <img src="img/queue_img0.png" id="queueImage" class="img-responsive">
-            </div>            
+            </div>
 
             <!-- Leave Queue Button-->
             <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#leaveQueue" onclick="toHomepage()">
@@ -128,20 +128,20 @@
                             <h4 class="modal-title">Warning!</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        
+
                         <!-- Modal body -->
                         <div class="modal-body">
                             You are about to leave the queue!<br />
                             You will lose your current position and will need to queue again when coming back!<br /> <br />
                             Do you still wish to continue leaving?
                         </div>
-                        
+
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" onclick="leaveQueue()">Leave</button>
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Stay</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -158,8 +158,8 @@
                     </div>
                 </h4>
             </div>
-        
-        </div>        
+
+        </div>
     </div>
 
 </body>

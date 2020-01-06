@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset='utf-8'>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <title>Enter Queue?</title>
   </head>
+
+  <script>
+    function toHomepage() {
+      location.assign("home.html");
+    }
+    function enterQeue() {
+      location.assign("queue.html");
+    }
+  </script>
+
   <body>
 
-    <div class="flex-container">
-      <div class='breadcrumb'>
-        TODO put breadcrumbs here
-      </div>
-      <div>
-        <p>Entering as a Student!</p>
-      </div>
-      <div>
-        <button id='enter_button'>Enter Queue</button>
-      </div>
-      <div>
-        <!-- TODO get number from somewhere-->
-        <p>Students currently in Queue: 3</p>
-      </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" data-toggle="modal" data-target="#leaveQueue" onclick="toHomepage()"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Student</li>
+      </ol>
+    </nav>
+
+    <div class='container text-center'>
+      <p class='display-3'>Entering as a Student!</p>
+      <button type="button" class="btn btn-lg btn-primary" onClick="enterQeue()">Enter Queue</button>
+      <!-- TODO get number from somewhere-->
+      <p class='display-4'>Students currently in Queue: 3</p>
     </div>
 
   </body>
