@@ -73,6 +73,10 @@ function isOdd(num) {
   return num % 2 === 1;
 }
 
+function toHomepage() {
+  location.assign("home.html");
+}
+
 //sends a the message written in the textarea (currently hardcoded, swaps between tutor and student after every message)
 function sendMessage() {
 
@@ -118,6 +122,7 @@ function sendMessage() {
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item" data-target="#leaveQueue" onclick="toHomepage()"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Chat</li>
       </ol>
     </nav>
 
